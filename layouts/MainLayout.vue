@@ -1,5 +1,6 @@
 <script setup>
 let isAccountMenu = ref(false)
+let isCartHover = ref(false)
 let isSearching = ref(true)
 let searchItem = ref('')
 </script>
@@ -136,12 +137,40 @@ let searchItem = ref('')
             </div>
 
             <div class="absolute bg-white max-w-[700px] h-auto w-full">
-              <div class="p-1">
+              <div v-if="false" class="p-1">
+                <NuxtLink
+                  to="`/item/1`"
+                  class="flex items-center justify-between w-full cursor-pointer hover:bg-gray-100"
+                >
+                  <div class="flex items-center">
+                    <img
+                      class="rounded-md"
+                      width="40"
+                      src="https://picsum.photos/id/82/300/300"
+                    />
+                    <div class="truncate ml-2">テスト</div>
+                  </div>
+                  <div class="truncate">$ 99.99</div>
 
+                </NuxtLink>
               </div>
             </div>
           </div>
         </div>
+
+        <NuxtLink
+          to="/shoppingcart"
+          class="flex items-center"
+        >
+          <button
+            class="relative md:block hidden"
+            @mouseenter="isCartHover = true"
+            @mouseleave="isCartHover = false"
+          >
+
+          </button>
+        </NuxtLink>
+
       </div>
     </div>
 
