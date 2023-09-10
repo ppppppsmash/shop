@@ -6,28 +6,42 @@ const products = [
     title: 'Title 1',
     description: 'This is a production',
     url: 'https://picsum.photos/id/7/800/800',
-    price: 100
+    price: 1000
   },
   {
     id: 2,
     title: 'Title 2',
     description: 'This is a production',
     url: 'https://picsum.photos/id/1/800/800',
-    price: 100
+    price: 2000
   },
   {
     id: 3,
     title: 'Title 3',
     description: 'This is a production',
     url: 'https://picsum.photos/id/9/800/800',
-    price: 100
+    price: 3000
   },
   {
     id: 4,
     title: 'Title 4',
     description: 'This is a production',
     url: 'https://picsum.photos/id/10/800/800',
-    price: 100
+    price: 4000
+  },
+  {
+    id: 5,
+    title: 'Title 5',
+    description: 'This is a production',
+    url: 'https://picsum.photos/id/13/800/800',
+    price: 5000
+  },
+  {
+    id: 6,
+    title: 'Title 6',
+    description: 'This is a production',
+    url: 'https://picsum.photos/id/15/800/800',
+    price: 6000
   }
 ]
 </script>
