@@ -26,8 +26,9 @@ const images = ref([
       <div class="md:flex gap-4 justify-between mx-auto w-full">
         <div class="md:w-[40%]">
           <img
+            v-if="currentImage"
             class="rounded-lg object-fit"
-            src="https://picsum.photos/id/212/800/800"
+            :src="currentImage"
           />
 
           <div
@@ -46,6 +47,14 @@ const images = ref([
             </div>
           </div>
         </div>
+
+        <div class="md:w-[60%] bg-white p-3 rounded-lg">
+          <div v-if="true"> 
+            <p class="mb-2">Title </p>
+            <p class="font-light text-[12px] mb-2">Description Section</p>
+          </div>
+        </div>
+
       </div>
     </div>
   </MainLayout>
