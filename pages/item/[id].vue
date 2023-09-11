@@ -1,5 +1,9 @@
 <script setup>
 import MainLayout from '~/layouts/MainLayout.vue'
+import { useUserStore } from '~/stores/user'
+const userStore = useUserStore()
+
+const route = useRoute()
 
 let currentImage = ref(null)
 
@@ -8,6 +12,16 @@ onMounted(() => {
     currentImage.value = 'https://picsum.photos/id/77/800/800'
     images.value[0] = 'https://picsum.photos/id/77/800/800'
   })
+})
+
+const isInCart = computed(() => {
+  let res = false
+  userStore.cart.forEach(prod => {
+    if(route.params.id == prod.id) {
+      res = true
+    }
+  })
+  return res
 })
 
 const priceComputed = computed(() => {
@@ -22,6 +36,10 @@ const images = ref([
   'https://picsum.photos/id/99/800/800',
   'https://picsum.photos/id/67/800/800'
 ])
+
+const addToCart = () => {
+  alert('ADDED')
+}
 </script>
 
 <template>
@@ -100,12 +118,13 @@ const images = ref([
           <div class="py-2" />
 
           <button
-            @click=""
+            @click="addToCart"
             :disabled="isInCart"
             class="px-6 py-2 rounded-lg text-white text-lg font-semibold
               bg-gradient-to-r from-[#FF851A] to-[#FFAC2C]"
           >
-          
+            <div v-if="isInCart">Is Added</div>
+            <div v-else>Add to Cart</div>
           </button>
 
         </div>
