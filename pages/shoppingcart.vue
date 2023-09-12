@@ -1,5 +1,29 @@
 <script setup>
 import MainLayout from '~/layouts/MainLayout.vue'
+import { useUserStore } from '~/stores/user'
+const userStore = useUserStore()
+
+let selectedArray = ref([])
+
+onMounted(() => {
+  setTimeout(() => userStore.isLoading = false, 200)
+})
+
+const cards = ref([
+  'visa.png',
+  'mastercard.png',
+  'paypal.png',
+  'applepay.png'
+])
+
+const totalPriceComputed = computed(() => {
+  let price = 0
+  userStore.cart.forEach(prod => {
+    price += prod.price
+  })
+
+  return price / 100
+})
 
 const products = [
   {
@@ -134,6 +158,15 @@ const products = [
             <div class="text-lg font-semibold mb-2">
               Payment methods
             </div>
+            <div class="flex items-center justify-start gap-8 my-4">
+              <div v-for="card in cards">
+                <img
+                  class="h-6"
+                  :src="card"
+                />
+              </div>
+            </div>
+
           </div>
 
         </div>
