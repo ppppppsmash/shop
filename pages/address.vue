@@ -27,6 +27,31 @@ const submit = async () => {
       type: 'contactName',
       message: 'A contact name is required'
     }
+  } else if (!address.value) {
+    error.value = {
+      type: 'address',
+      message: 'An address is required'
+    }
+  } else if (!zipCode.value) {
+    error.value = {
+      type: 'zipCode',
+      message: 'A zip code is required'
+    }
+  } else if (!city.value) {
+    error.value = {
+      type: 'city',
+      message: 'A city is required'
+    }
+  } else if (!country.value) {
+    error.value = {
+      type: 'country',
+      message: 'A country is required'
+    }
+  }
+
+  if(error.value) {
+    isWorking.value = false
+    return
   }
 }
 </script>
