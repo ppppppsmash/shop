@@ -45,5 +45,20 @@ const signIn = () => {
         <Icon name="mdi:close" size="30" />
       </button>
     </div>
+
+    <div class="flex items-center justify-center pt-5">
+      <ul class="w-full ">
+        <li
+          @click="goTo('orders')"
+          class="relative flex items-center justify-start py-2.5 border-b
+            px-3 hover:bg-gray-100 cursor-pointer"
+        >
+          <div class="flex items-center text-[20px] font-semibold">
+            <Icon name="ph:pen-light" size="33" />
+            <span>My Orders</span>
+          </div>
+        </li>
+      </ul>
+    </div>
   </div>
 </template>
