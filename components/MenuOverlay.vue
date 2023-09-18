@@ -53,9 +53,27 @@ const signIn = () => {
           class="relative flex items-center justify-start py-2.5 border-b
             px-3 hover:bg-gray-100 cursor-pointer"
         >
-          <div class="flex items-center text-[20px] font-semibold">
+          <div class="flex items-center text-[20px] font-semibold gap-x-2">
             <Icon name="ph:pen-light" size="33" />
             <span>My Orders</span>
+          </div>
+        </li>
+
+        <li
+          @click="goTo('shoppingcart')"
+          class="relative flex items-center justify-start py-2.5 border-b
+            px-3 hover:bg-gray-100 cursor-pointer"
+        >
+          <div class="flex items-center text-[20px] font-semibold gap-x-2">
+            <Icon name="ph:shopping-cart-simple-light" size="33" />
+            <span>Cart</span>
+          </div>
+
+          <div
+            class="flex items-center justify-center bg-[#FF4646] h-[35px]
+              min-w-[35px] text-lg text-white rounded-full"
+          >
+
           </div>
         </li>
       </ul>
