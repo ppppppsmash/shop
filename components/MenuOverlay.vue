@@ -73,9 +73,23 @@ const signIn = () => {
             class="flex items-center justify-center bg-[#FF4646] h-[35px]
               min-w-[35px] text-lg text-white rounded-full"
           >
-
+            {{ userStore.cart.length }}
           </div>
         </li>
+
+        <li
+          v-if="false"
+          @click="signOut()"
+          class="relative flex items-center justify-start py-2.5 border-b
+            px-3 hover:bg-gray-100 cursor-pointer"
+        >
+          <div class="flex items-center text-[20px] font-semibold gap-x-2">
+            <Icon name="ph:sign-out-light" size="33" />
+            <span>Sign Out</span>
+          </div>
+        </li>
+
+        
       </ul>
     </div>
   </div>
