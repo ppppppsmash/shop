@@ -61,7 +61,7 @@ const signIn = () => {
 
         <li
           @click="goTo('shoppingcart')"
-          class="relative flex items-center justify-start py-2.5 border-b
+          class="relative flex items-center justify-between py-2.5 border-b
             px-3 hover:bg-gray-100 cursor-pointer"
         >
           <div class="flex items-center text-[20px] font-semibold gap-x-2">
@@ -89,7 +89,17 @@ const signIn = () => {
           </div>
         </li>
 
-        
+        <li
+          v-else
+          @click="signOut()"
+          class="relative flex items-center justify-start py-2.5 border-b
+            px-3 hover:bg-gray-100 cursor-pointer"
+        >
+          <div class="flex items-center text-[20px] font-semibold gap-x-2">
+            <Icon name="ph:sign-in-light" size="33" />
+            <span>Sign In / Register</span>
+          </div>
+        </li>
       </ul>
     </div>
   </div>
