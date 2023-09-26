@@ -2,6 +2,7 @@
 import MainLayout from '~/layouts/MainLayout.vue'
 import { useUserStore } from '~/stores/user'
 const userStore = useUserStore()
+const user = useSupabaseUser()
 
 let selectedArray = ref([])
 
@@ -55,56 +56,12 @@ const goToCheckout = () => {
   return navigateTo('/checkout')
 }
 
-const products = [
-  {
-    id: 1,
-    title: 'Title 1',
-    description: 'This is a production',
-    url: 'https://picsum.photos/id/7/800/800',
-    price: 1000
-  },
-  {
-    id: 2,
-    title: 'Title 2',
-    description: 'This is a production',
-    url: 'https://picsum.photos/id/1/800/800',
-    price: 2000
-  },
-  {
-    id: 3,
-    title: 'Title 3',
-    description: 'This is a production',
-    url: 'https://picsum.photos/id/9/800/800',
-    price: 3000
-  },
-  {
-    id: 4,
-    title: 'Title 4',
-    description: 'This is a production',
-    url: 'https://picsum.photos/id/10/800/800',
-    price: 4000
-  },
-  {
-    id: 5,
-    title: 'Title 5',
-    description: 'This is a production',
-    url: 'https://picsum.photos/id/13/800/800',
-    price: 5000
-  },
-  {
-    id: 6,
-    title: 'Title 6',
-    description: 'This is a production',
-    url: 'https://picsum.photos/id/15/800/800',
-    price: 6000
-  }
-]
 </script>
 
 <template>
   <MainLayout>
     <div id="ShoppingCartPage" class="mt-4 max-w-[1200px] mx-auto px-2">
-      <div v-if="false" class="h-[500px] flex items-center justify-center">
+      <div v-if="!userStore.cart.length" class="h-[500px] flex items-center justify-center">
         <div class="pt-20">
           <img
             class="mx-auto"
@@ -116,7 +73,7 @@ const products = [
             No items yet?
           </div>
 
-          <div v-if="true" class="flex text-center">
+          <div v-if="!user" class="flex text-center">
             <NuxtLink
               to="/auth"
               class="bg-[#FD374F] w-full text-white text-[21px] font-semibold
@@ -137,7 +94,7 @@ const products = [
         <div class="md:w-[65%]">
           <div class="bg-white rounded-lg p-4">
             <div class="text-2xl font-bold mb-2">
-              Shopping Cart (0)
+              Shopping Cart ({{ userStore.cart.length }})
             </div>
           </div>
 
@@ -148,7 +105,7 @@ const products = [
           </div>
 
           <div id="Items" class="bg-white rounded-lg p-4 mt-4">
-            <div v-for="product in products">
+            <div v-for="product in userStore.cart">
               <CartItem
                 :product="product"
                 :selectedArray="selectedArray"
