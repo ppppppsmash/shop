@@ -62,23 +62,6 @@ const createOrder = async (stripeId) => {
 const showError = (errorMsgText) => {
 
 }
-
-const products = [
-  {
-    id: 1,
-    title: 'Title 1',
-    description: 'This is a description',
-    url: 'https://picsum.photos/id/1/800/800',
-    price: 2000
-  },
-  {
-    id: 2,
-    title: 'Title 2',
-    description: 'This is a description',
-    url: 'https://picsum.photos/id/9/800/800',
-    price: 3000
-  }
-]
 </script>
 
 <template>
@@ -91,7 +74,7 @@ const products = [
               Shipping Address
             </div>
 
-            <div v-if="true">
+            <div v-if="currentAddress && currentAddress.data">
               <NuxtLink
                 to="/address"
                 class="flex items-center pb-2 text-blue-500 hover:text-red-400"
@@ -108,23 +91,23 @@ const products = [
                 <ul class="text-xs">
                   <li class="flex items-center gap-2">
                     <div>Contact name:</div>
-                    <div class="font-bold">TEST</div>
+                    <div class="font-bold">{{ currentAddress.data.name }}</div>
                   </li>
                   <li class="flex items-center gap-2">
                     <div>Address:</div>
-                    <div class="font-bold">TEST</div>
+                    <div class="font-bold">{{ currentAddress.data.address }}</div>
                   </li>
                   <li class="flex items-center gap-2">
                     <div>Zip Code:</div>
-                    <div class="font-bold">TEST</div>
+                    <div class="font-bold">{{ currentAddress.data.zipcode }}</div>
                   </li>
                   <li class="flex items-center gap-2">
                     <div>City:</div>
-                    <div class="font-bold">TEST</div>
+                    <div class="font-bold">{{ currentAddress.data.city }}</div>
                   </li>
                   <li class="flex items-center gap-2">
                     <div>Country:</div>
-                    <div class="font-bold">TEST</div>
+                    <div class="font-bold">{{ currentAddress.data.country }}</div>
                   </li>
                 </ul>
               </div>
@@ -141,7 +124,7 @@ const products = [
           </div>
 
           <div id="Items" class="bg-white rounded-lg p-4 mt-4">
-            <div v-for="product in products">
+            <div v-for="product in userStore.checkout">
               <CheckoutItem :product="product" />
             </div>
           </div>
