@@ -2,6 +2,7 @@
 import MainLayout from '~/layouts/MainLayout.vue'
 import { useUserStore } from '~/stores/user'
 const userStore = useUserStore()
+const user = useSupabaseUser()
 const route = useRoute()
 
 let stripe = null
@@ -12,6 +13,25 @@ let total = ref(0)
 let clientSecret = null
 let currentAddress = ref(null)
 let isProcessing = ref(false)
+
+onBeforeMount(async () => {
+  if (userStore.checkout.length < 1) {
+    return navigateTo('/shoppingcart')
+  }
+
+  total.value = 0.00
+
+  if (user.value) {
+    currentAddress.value = await useFetch(`/api/prisma/get-address-by-user/${user.value.id}`)
+    setTimeout(() => userStore.isLoading = false, 200)
+  }
+})
+
+watchEffect(() => {
+  if (route.fullPath == '/checkout' && !user.value) {
+    return navigateTo('/auth')
+  }
+})
 
 onMounted(() => {
   isProcessing.value = true
