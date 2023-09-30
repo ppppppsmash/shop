@@ -49,9 +49,9 @@ watch(() => total.value, () => {
 
 const stripeInit = async () => {
   const runtimeConfig = useRuntimeConfig()
-  stripe = Stripe(runtimeConfig.stripePk)
+  stripe = Stripe(runtimeConfig.public.stripePk)
 
-  let res = await fetch('/api/stripe/paymentintent', {
+  let res = await $fetch('/api/stripe/paymentintent', {
     method: 'POST',
     body: {
       amount: total.value,
@@ -125,7 +125,12 @@ const createOrder = async (stripeId) => {
 }
 
 const showError = (errorMsgText) => {
+  let errorMsg = document.querySelector('#card-error')
 
+  errorMsg.textContent = errorMsgText
+  setTimeout(() => {
+    errorMsg.textContent = ''
+  }, 4000)
 }
 </script>
 
