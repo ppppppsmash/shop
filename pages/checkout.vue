@@ -57,6 +57,31 @@ const stripeInit = async () => {
       amount: total.value,
     }
   })
+
+  clientSecret = res.client_secret
+
+  elements = stripe.elements()
+  var style = {
+    base: {
+      fontSize: '18px'
+    },
+    invalid: {
+      fontFamily: 'Arial, sans-serif',
+      color: '#EE4B2B',
+      iconColor: '#EE4B2B'
+    }
+  }
+
+  card = elements.create('card', {
+    hidePostalCode: true,
+    style: style
+  })
+
+  card.amount('#card-element')
+  card.on('change', (event) => {
+    document.querySelector('button').disabled = event.empty
+    document.querySelector('#card-error').textContent = event.error ? event.error.message : ''
+  })
 }
 
 const pay = async () => {
