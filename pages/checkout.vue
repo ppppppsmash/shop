@@ -7,7 +7,7 @@ const route = useRoute()
 
 let stripe = null
 let elements = null
-let cart = null
+let card = null
 let form = null
 let total = ref(0)
 let clientSecret = null
@@ -77,11 +77,13 @@ const stripeInit = async () => {
     style: style
   })
 
-  card.amount('#card-element')
+  card.mount('#card-element')
   card.on('change', (event) => {
     document.querySelector('button').disabled = event.empty
     document.querySelector('#card-error').textContent = event.error ? event.error.message : ''
   })
+
+  isProcessing.value = false
 }
 
 const pay = async () => {
@@ -239,6 +241,7 @@ const showError = (errorMsgText) => {
                 type="submit"
                 class="mt-4 bg-gradient-to-r from-[#FE630C] to-[#FF3200]
                   w-full text-white text-[21px] font-semibold p-1.5 rounded-full"
+                :class="isProcessing ? 'opacity-70' : 'opacity-100'"
               >
                 <Icon v-if="isProcessing" name="eos-icons:loading" />
                 <div v-else>Place order</div>
